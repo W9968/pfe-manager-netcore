@@ -30,6 +30,31 @@
         </dd>
     </dl>
 </div>
+
+@if (Model.PFEEtudiants != null && Model.PFEEtudiants.Any())
+{
+    <div>
+        <h4>PFE Etudiants</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>PFE ID</th>
+                    <th>PFE Titre</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pfeEtudiant in Model.PFEEtudiants)
+                {
+                    <tr>
+                        <td>@pfeEtudiant.PFEID</td>
+                        <td>@pfeEtudiant.PFE?.Titre</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>

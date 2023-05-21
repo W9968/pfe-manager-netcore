@@ -19,23 +19,54 @@ namespace WALASEBAI.Controllers
         }
 
         // GET: Students
-        public async Task<IActionResult> Index()
+        // GET: Students
+        public async Task<IActionResult> Index(string searchQuery, string sortBy)
         {
-              return _context.Student != null ? 
-                          View(await _context.Student.ToListAsync()) :
-                          Problem("Entity set 'WalaSebaiContext.Student'  is null.");
+            IQueryable<Student> students = _context.Student;
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                students = students.Where(s => s.Nom.Contains(searchQuery) || s.Prenom.Contains(searchQuery));
+                ViewBag.SearchQuery = searchQuery;
+            }
+
+            // Apply sorting
+            switch (sortBy)
+            {
+                case "DateNaissAsc":
+                    students = students.OrderBy(s => s.DateNaiss);
+                    break;
+                case "DateNaissDesc":
+                    students = students.OrderByDescending(s => s.DateNaiss);
+                    break;
+                default:
+                    students = students.OrderBy(s => s.Id);
+                    break;
+            }
+
+            if (students == null)
+            {
+                return Problem("Entity set 'WalaSebaiContext.Student' is null.");
+            }
+
+            return View(await students.ToListAsync());
         }
+
+
 
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Student == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
             var student = await _context.Student
+                .Include(s => s.PFEEtudiants)
+                .ThenInclude(pe => pe.PFE)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (student == null)
             {
                 return NotFound();

@@ -9,6 +9,26 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+@using (Html.BeginForm("Index", "Students", FormMethod.Get))
+{
+    <p>
+        Search:
+        <input type="text" name="searchQuery" value="@ViewBag.SearchQuery" />
+        <input type="submit" value="Search" />
+    </p>
+
+    <p>
+        Sort by:
+        <select name="sortBy">
+            <option value="">-- Select --</option>
+            <option value="DateNaissAsc">Oldest to Youngest</option>
+            <option value="DateNaissDesc">Youngest to Oldest</option>
+        </select>
+        <input type="submit" value="Sort" />
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>
