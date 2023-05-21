@@ -1,0 +1,54 @@
+﻿@model WALASEBAI.Models.PFE
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>PFE</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Titre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Titre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Desc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Desc)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateD)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateD)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateF)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateF)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Encadrant)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Encadrant.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Societe)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Societe.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
