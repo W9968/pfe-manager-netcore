@@ -160,14 +160,14 @@ namespace WALASEBAI.Controllers
             {
                 _context.PFE_Etudiant.Remove(pFE_Etudiant);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PFE_EtudiantExists(int id)
         {
-          return (_context.PFE_Etudiant?.Any(e => e.ID == id)).GetValueOrDefault();
+            return (_context.PFE_Etudiant?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

@@ -42,6 +42,41 @@
         </dd>
     </dl>
 </div>
+
+
+<!-- Display list of PFEs -->
+<h2>PFEs</h2>
+@if (Model.Pfes != null && Model.Pfes.Any())
+{
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Date Début</th>
+            <th>Date Fin</th>
+            <th>Responsable</th>
+        </tr>
+        @foreach (var pfe in Model.Pfes)
+        {
+            <tr>
+                <td>@pfe.id</td>
+                <td>@pfe.Titre</td>
+                <td>@pfe.Desc</td>
+                <td>@pfe.DateD.ToShortDateString()</td>
+                <td>@pfe.DateF.ToShortDateString()</td>
+                <td>@(pfe.Encadrant != null ? $"{pfe.Encadrant.Nom} {pfe.Encadrant.Prenom}" : "")</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>No PFEs found.</p>
+}
+
+
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>

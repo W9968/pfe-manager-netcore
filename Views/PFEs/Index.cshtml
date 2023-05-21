@@ -9,6 +9,27 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+
+<!-- Search form -->
+<form method="get">
+    <div class="form-group">
+        <label for="searchString">Search:</label>
+        <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="selectedFilter">Filter by:</label>
+        <select name="selectedFilter" class="form-control">
+            <option value="">All</option>
+            <option value="Encadrant" selected="selected">Encadrant</option>
+            <option value="Societe">Societe</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Clear</a>
+</form>
+
+
 <table class="table">
     <thead>
         <tr>

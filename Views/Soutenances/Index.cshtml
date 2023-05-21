@@ -9,6 +9,23 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+
+
+@using (Html.BeginForm("Index", "Soutenances", FormMethod.Get))
+{
+    <p>
+        Search by PFE Titre:
+        <input type="text" name="searchString" value="@ViewBag.CurrentFilter" />
+
+        <input type="submit" value="Search" />
+        <a asp-action="Index">Clear</a>
+    </p>
+}
+
+
+
+
 <table class="table">
     <thead>
         <tr>

@@ -19,13 +19,34 @@ namespace WALASEBAI.Controllers
         }
 
         // GET: Enseignants
-        public async Task<IActionResult> Index()
+        // GET: Enseignants
+        // GET: Enseignants
+        public async Task<IActionResult> Index(string searchType, string searchString)
         {
-              return _context.Enseignant != null ? 
-                          View(await _context.Enseignant.ToListAsync()) :
-                          Problem("Entity set 'WalaSebaiContext.Enseignant'  is null.");
+            var enseignants = _context.Enseignant.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                if (searchType == "nom")
+                {
+                    enseignants = enseignants.Where(e => e.Nom.Contains(searchString));
+                }
+                else if (searchType == "prenom")
+                {
+                    enseignants = enseignants.Where(e => e.Prenom.Contains(searchString));
+                }
+                else if (searchType == "cin")
+                {
+                    enseignants = enseignants.Where(e => e.CIN.Contains(searchString));
+                }
+            }
+
+            return View(await enseignants.ToListAsync());
         }
 
+
+
+        // GET: Enseignants/Details/5
         // GET: Enseignants/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -35,7 +56,11 @@ namespace WALASEBAI.Controllers
             }
 
             var enseignant = await _context.Enseignant
+                .Include(e => e.PFEs)
+                .Include(e => e.SoutenancesEnTantQuePresident)
+                .Include(e => e.SoutenancesEnTantQueRapporteur)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (enseignant == null)
             {
                 return NotFound();
@@ -43,6 +68,7 @@ namespace WALASEBAI.Controllers
 
             return View(enseignant);
         }
+
 
         // GET: Enseignants/Create
         public IActionResult Create()

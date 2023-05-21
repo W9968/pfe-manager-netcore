@@ -9,6 +9,22 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+@using (Html.BeginForm("Index", "Enseignants", FormMethod.Get))
+{
+    <p>
+        Search by:
+        <select name="searchType">
+            <option value="nom">Nom</option>
+            <option value="prenom">Prénom</option>
+            <option value="cin">CIN</option>
+        </select>
+        <input type="text" name="searchString" />
+        <input type="submit" value="Search" />
+    </p>
+}
+
+
 <table class="table">
     <thead>
         <tr>

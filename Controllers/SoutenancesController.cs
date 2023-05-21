@@ -19,11 +19,21 @@ namespace WALASEBAI.Controllers
         }
 
         // GET: Soutenances
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var walaSebaiContext = _context.Soutenance.Include(s => s.PFE).Include(s => s.President).Include(s => s.Rapporteur);
-            return View(await walaSebaiContext.ToListAsync());
+            IQueryable<Soutenance> soutenances = _context.Soutenance
+                .Include(s => s.PFE)
+                .Include(s => s.President)
+                .Include(s => s.Rapporteur);
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                soutenances = soutenances.Where(s => s.PFE.Titre.Contains(searchString));
+            }
+
+            return View(await soutenances.ToListAsync());
         }
+
 
         // GET: Soutenances/Details/5
         public async Task<IActionResult> Details(int? id)

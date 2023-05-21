@@ -19,13 +19,20 @@ namespace WALASEBAI.Controllers
         }
 
         // GET: Societes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-              return _context.Societe != null ? 
-                          View(await _context.Societe.ToListAsync()) :
-                          Problem("Entity set 'WalaSebaiContext.Societe'  is null.");
+            var societes = _context.Societe.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                societes = societes.Where(s => s.Nom.Contains(searchString));
+            }
+
+            return View(await societes.ToListAsync());
         }
 
+
+        // GET: Societes/Details/5
         // GET: Societes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -35,7 +42,10 @@ namespace WALASEBAI.Controllers
             }
 
             var societe = await _context.Societe
+                .Include(s => s.Pfes) // Include PFEs
+                    .ThenInclude(p => p.Encadrant) // Include PFE.Encadrant
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (societe == null)
             {
                 return NotFound();
@@ -43,6 +53,7 @@ namespace WALASEBAI.Controllers
 
             return View(societe);
         }
+
 
         // GET: Societes/Create
         public IActionResult Create()

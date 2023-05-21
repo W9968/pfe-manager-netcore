@@ -19,11 +19,32 @@ namespace WALASEBAI.Controllers
         }
 
         // GET: PFEs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, string selectedFilter)
         {
-            var walaSebaiContext = _context.PFE.Include(p => p.Encadrant).Include(p => p.Societe);
-            return View(await walaSebaiContext.ToListAsync());
+            ViewData["SelectedFilter"] = selectedFilter;
+
+            var pFEs = from pfe in _context.PFE.Include(p => p.Encadrant).Include(p => p.Societe)
+                       select pfe;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                switch (selectedFilter)
+                {
+                    case "Encadrant":
+                        pFEs = pFEs.Where(p => p.Encadrant.Nom.Contains(searchString));
+                        break;
+                    case "Societe":
+                        pFEs = pFEs.Where(p => p.Societe.Nom.Contains(searchString));
+                        break;
+                    default:
+                        pFEs = pFEs.Where(p => p.Encadrant.Nom.Contains(searchString) || p.Societe.Nom.Contains(searchString));
+                        break;
+                }
+            }
+
+            return View(await pFEs.ToListAsync());
         }
+
 
         // GET: PFEs/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -37,6 +58,7 @@ namespace WALASEBAI.Controllers
                 .Include(p => p.Encadrant)
                 .Include(p => p.Societe)
                 .FirstOrDefaultAsync(m => m.id == id);
+
             if (pFE == null)
             {
                 return NotFound();

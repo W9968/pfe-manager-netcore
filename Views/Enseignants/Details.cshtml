@@ -30,6 +30,99 @@
         </dd>
     </dl>
 </div>
+
+
+<div>
+    <h4>PFEs</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PFEs.First().Titre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PFEs.First().Desc)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pfe in Model.PFEs)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => pfe.Titre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => pfe.Desc)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <h4>Soutenances as President</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.SoutenancesEnTantQuePresident.First().Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SoutenancesEnTantQuePresident.First().Heure)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var soutenance in Model.SoutenancesEnTantQuePresident)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => soutenance.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => soutenance.Heure)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <h4>Soutenances as Rapporteur</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.SoutenancesEnTantQueRapporteur.First().Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SoutenancesEnTantQueRapporteur.First().Heure)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var soutenance in Model.SoutenancesEnTantQueRapporteur)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => soutenance.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => soutenance.Heure)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
