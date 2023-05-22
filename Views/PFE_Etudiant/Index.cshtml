@@ -4,15 +4,38 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+	<div class="page-title d-flex flex-column gap-1 me-3 mb-2">
+		<ul class="breadcrumb breadcrumb-separatorless fw-semibold mb-6">
+			<li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+				<a href="../dist/index.html" class="text-gray-500">
+					<i class="ki-duotone ki-home fs-3 text-gray-400 me-n1"></i>
+				</a>
+			</li>
+			<li class="breadcrumb-item">
+				<i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+			</li>
+			<li class="breadcrumb-item text-gray-700 fw-bold lh-1">Apps</li>
+			<li class="breadcrumb-item">
+				<i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+			</li>
+			<li class="breadcrumb-item text-gray-700 fw-bold lh-1">Listes</li>
+			<li class="breadcrumb-item">
+				<i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+			</li>
+			<li class="breadcrumb-item text-gray-700 fw-bold lh-1">List</li>
+		</ul>
+		<h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bolder fs-1 lh-0">Listes</h1>
+	</div>
+    <a asp-action="Create" class="btn btn-success ms-3 px-4 py-3">Create New</a>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-
-<table class="table">
-    <thead>
-        <tr>
+<div class="app-content flex-column-fluid">
+    <div class="card card-flush">
+        <div class="card-body pt-0">
+            <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                <thead>
+        <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0" >
             <th>
                 @Html.DisplayNameFor(model => model.PFE)
             </th>
@@ -22,7 +45,7 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="fw-semibold text-gray-600">
 @foreach (var item in Model) {
         <tr>
             <td>
@@ -31,12 +54,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Etudiant.Prenom) @Html.DisplayFor(modelItem => item.Etudiant.Nom)
                 </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
+                            <td class="text-end">
+                                <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-light-info btn-sm" >Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-light-success btn-sm">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-light-danger btn-sm">Delete</a>
+                            </td>
         </tr>
 }
     </tbody>
 </table>
+
+
+        </div>
+    </div>
+</div>

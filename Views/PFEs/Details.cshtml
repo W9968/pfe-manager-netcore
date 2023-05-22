@@ -4,11 +4,40 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+    <div class="page-title d-flex flex-column gap-1 me-3 mb-2">
+        <ul class="breadcrumb breadcrumb-separatorless fw-semibold mb-6">
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+                <a href="../dist/index.html" class="text-gray-500">
+                    <i class="ki-duotone ki-home fs-3 text-gray-400 me-n1"></i>
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+            </li>
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Apps</li>
+            <li class="breadcrumb-item">
+                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+            </li>
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Projets Fin d'Etudes</li>
+            <li class="breadcrumb-item">
+                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+            </li>
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Details</li>
+        </ul>
+        <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bolder fs-1 lh-0">Projets Fin d'Etudes</h1>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.id" class="btn btn-info">Edit</a>
+        <a asp-action="Index" class="btn btn-danger ms-3 px-4 py-3">Back to list</a>
+    </div>
+</div>
 
-<div>
-    <h4>PFE</h4>
     <hr />
+    <br />
+
+<div class="card mb-5 mb-xl-10">
+    <div class="card-body p-9">
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Titre)
@@ -48,7 +77,5 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>
+

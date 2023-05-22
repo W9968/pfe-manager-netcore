@@ -4,52 +4,68 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+    <div class="page-title d-flex flex-column gap-1 me-3 mb-2">
+        <ul class="breadcrumb breadcrumb-separatorless fw-semibold mb-6">
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+                <a href="../dist/index.html" class="text-gray-500">
+                    <i class="ki-duotone ki-home fs-3 text-gray-400 me-n1"></i>
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+            </li>
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Apps</li>
+            <li class="breadcrumb-item">
+                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+            </li>
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Projet Fin d'Etudes</li>
+            <li class="breadcrumb-item">
+                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+            </li>
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Create</li>
+        </ul>
+        <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bolder fs-1 lh-0">Projet Fin d'Etudes</h1>
+    </div>
+    <a asp-action="Index" class="btn btn-danger ms-3 px-4 py-3">Back to list</a>
+</div>
 
-<h4>PFE</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+
+        <form asp-action="Create" class="form fv-plugins-bootstrap5 fv-plugins-framework">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Titre" class="control-label"></label>
-                <input asp-for="Titre" class="form-control" />
+            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                <label asp-for="Titre" class="required fs-6 fw-semibold mb-2"></label>
+                <input asp-for="Titre" class="form-control form-control-solid" />
                 <span asp-validation-for="Titre" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Desc" class="control-label"></label>
-                <input asp-for="Desc" class="form-control" />
+            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                <label asp-for="Desc" class="required fs-6 fw-semibold mb-2"></label>
+                <input asp-for="Desc" class="form-control form-control-solid" />
                 <span asp-validation-for="Desc" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="DateD" class="control-label"></label>
-                <input asp-for="DateD" class="form-control" />
+            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                <label asp-for="DateD" class="required fs-6 fw-semibold mb-2"></label>
+                <input asp-for="DateD" class="form-control form-control-solid" />
                 <span asp-validation-for="DateD" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="DateF" class="control-label"></label>
-                <input asp-for="DateF" class="form-control" />
+            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                <label asp-for="DateF" class="required fs-6 fw-semibold mb-2"></label>
+                <input asp-for="DateF" class="form-control form-control-solid" />
                 <span asp-validation-for="DateF" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="EncadrantID" class="control-label"></label>
-                <select asp-for="EncadrantID" class ="form-control" asp-items="ViewBag.EncadrantID"></select>
+            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                <label asp-for="EncadrantID" class="required fs-6 fw-semibold mb-2"></label>
+                <select asp-for="EncadrantID" class ="form-control form-control-solid" asp-items="ViewBag.EncadrantID"></select>
             </div>
-            <div class="form-group">
-                <label asp-for="SocieteID" class="control-label"></label>
-                <select asp-for="SocieteID" class ="form-control" asp-items="ViewBag.SocieteID"></select>
+            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                <label asp-for="SocieteID" class="required fs-6 fw-semibold mb-2"></label>
+                <select asp-for="SocieteID" class ="form-control form-control-solid" asp-items="ViewBag.SocieteID"></select>
             </div>
-            <div class="form-group">
+            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
