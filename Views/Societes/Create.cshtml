@@ -4,49 +4,66 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+    <div class="page-title d-flex flex-column gap-1 me-3 mb-2">
+        <ul class="breadcrumb breadcrumb-separatorless fw-semibold mb-6">
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+                <a href="../dist/index.html" class="text-gray-500">
+                    <i class="ki-duotone ki-home fs-3 text-gray-400 me-n1"></i>
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+            </li>
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Apps</li>
+            <li class="breadcrumb-item">
+                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+            </li>
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Societes</li>
+            <li class="breadcrumb-item">
+                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+            </li>
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Create</li>
+        </ul>
+        <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bolder fs-1 lh-0">Societes</h1>
+    </div>
+    <a asp-action="Index" class="btn btn-danger ms-3 px-4 py-3">Back to list</a>
+</div>
 
-<h4>Societe</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+
+        <form asp-action="Create" class="form fv-plugins-bootstrap5 fv-plugins-framework">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nom" class="control-label"></label>
-                <input asp-for="Nom" class="form-control" />
+            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                <label asp-for="Nom" class="required fs-6 fw-semibold mb-2"></label>
+                <input asp-for="Nom" class="form-control form-control-solid" />
                 <span asp-validation-for="Nom" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Lib" class="control-label"></label>
-                <input asp-for="Lib" class="form-control" />
+            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                <label asp-for="Lib" class="required fs-6 fw-semibold mb-2"></label>
+                <input asp-for="Lib" class="form-control form-control-solid" />
                 <span asp-validation-for="Lib" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Adresse" class="control-label"></label>
-                <input asp-for="Adresse" class="form-control" />
+            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                <label asp-for="Adresse" class="required fs-6 fw-semibold mb-2"></label>
+                <input asp-for="Adresse" class="form-control form-control-solid" />
                 <span asp-validation-for="Adresse" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Tel" class="control-label"></label>
-                <input asp-for="Tel" class="form-control" />
+            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                <label asp-for="Tel" class="required fs-6 fw-semibold mb-2"></label>
+                <input asp-for="Tel" class="form-control form-control-solid" />
                 <span asp-validation-for="Tel" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Mail" class="control-label"></label>
-                <input asp-for="Mail" class="form-control" />
+            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                <label asp-for="Mail" class="required fs-6 fw-semibold mb-2"></label>
+                <input asp-for="Mail" class="form-control form-control-solid" />
                 <span asp-validation-for="Mail" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
