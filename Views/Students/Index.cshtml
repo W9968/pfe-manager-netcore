@@ -4,64 +4,91 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+	<div class="page-title d-flex flex-column gap-1 me-3 mb-2">
+		<ul class="breadcrumb breadcrumb-separatorless fw-semibold mb-6">
+			<li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+				<a href="../dist/index.html" class="text-gray-500">
+					<i class="ki-duotone ki-home fs-3 text-gray-400 me-n1"></i>
+				</a>
+			</li>
+			<li class="breadcrumb-item">
+				<i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+			</li>
+			<li class="breadcrumb-item text-gray-700 fw-bold lh-1">Apps</li>
+			<li class="breadcrumb-item">
+				<i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+			</li>
+			<li class="breadcrumb-item text-gray-700 fw-bold lh-1">Students</li>
+			<li class="breadcrumb-item">
+				<i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+			</li>
+			<li class="breadcrumb-item text-gray-700 fw-bold lh-1">List</li>
+		</ul>
+		<h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bolder fs-1 lh-0">Students</h1>
+	</div>
+    <a asp-action="Create" class="btn btn-success ms-3 px-4 py-3">Create New</a>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="app-content flex-column-fluid">
+    <div class="card card-flush">
+        @using (Html.BeginForm("Index", "Students", FormMethod.Get))
+        {
+            <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                <div style="display:flex;gap:15px">
+                    <input type="text" name="searchQuery" placeholder="Search for student" value="@ViewBag.SearchQuery" class="form-control form-control-solid w-250px ps-12" />
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                </div>
 
-@using (Html.BeginForm("Index", "Students", FormMethod.Get))
-{
-    <p>
-        Search:
-        <input type="text" name="searchQuery" value="@ViewBag.SearchQuery" />
-        <input type="submit" value="Search" />
-    </p>
+                <div style="display:flex;gap:15px">
+                    <select name="sortBy" class="w-150 select2-selection select2-selection--single form-select form-select-solid">
+                        <option value="" hidden>Sort By ...</option>
+                        <option value="DateNaissAsc">Oldest to Youngest</option>
+                        <option value="DateNaissDesc">Youngest to Oldest</option>
+                    </select>
+                    <input type="submit" value="Sort" class="btn btn-info" />
+                </div>
+            </div>
+        }
+        <div class="card-body pt-0">
+            <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                <thead>
+                    <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nom)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Prenom)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateNaiss)
+                        </th>
+                        <th class="text-end"></th>
+                    </tr>
+                </thead>
+                <tbody class="fw-semibold text-gray-600">
+                    @foreach (var item in Model)
+                    {
+                        <tr class="odd" >
+                            <td class="text-gray-800 fs-5 fw-bold">
+                                @Html.DisplayFor(modelItem => item.Nom)
+                            </td>
+                            <td class="text-gray-800 fs-5 fw-bold">
+                                @Html.DisplayFor(modelItem => item.Prenom)
+                            </td>
+                            <td class="text-gray-800 fs-5 fw-bold">
+                                @Html.DisplayFor(modelItem => item.DateNaiss)
+                            </td>
+                            <td class="text-end">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-light-info btn-sm" >Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-light-success btn-sm">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-light-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
 
-    <p>
-        Sort by:
-        <select name="sortBy">
-            <option value="">-- Select --</option>
-            <option value="DateNaissAsc">Oldest to Youngest</option>
-            <option value="DateNaissDesc">Youngest to Oldest</option>
-        </select>
-        <input type="submit" value="Sort" />
-    </p>
-}
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nom)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Prenom)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateNaiss)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Prenom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateNaiss)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        </div>
+    </div>
+</div>

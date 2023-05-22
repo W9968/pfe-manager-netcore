@@ -10,6 +10,7 @@ namespace WALASEBAI.Models
 
         public string Prenom { get; set; }
 
+        [Display(Name ="Date Naissance")]
         [DataType(DataType.Date)]
         public DateTime DateNaiss { get; set; }
 

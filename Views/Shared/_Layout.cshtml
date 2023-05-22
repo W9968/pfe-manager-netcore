@@ -1,64 +1,274 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+	<base href="../../" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WALASEBAI</title>
     <title>@ViewData["Title"] - WALASEBAI</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WALASEBAI.styles.css" asp-append-version="true" />
+    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WALASEBAI</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Students" asp-action="Index">Students</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Enseignants" asp-action="Index">Enseignants</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Societes" asp-action="Index">Societes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="PFEs" asp-action="Index">PFE</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="PFE_Etudiant" asp-action="Index">List</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Soutenances" asp-action="Index">Soutenances</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+<body id="kt_app_body" data-kt-app-header-fixed="true" data-kt-app-header-fixed-mobile="true"
+	  data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true"
+	  data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true"
+	  data-kt-app-aside-enabled="true" data-kt-app-aside-fixed="true" data-kt-app-aside-push-toolbar="true"
+	  data-kt-app-aside-push-footer="true" class="app-default">
+	<!--begin::Theme mode setup on page load-->
+	<script>var defaultThemeMode = "light"; var themeMode; if (document.documentElement) { if (document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = "light"; } else { if (localStorage.getItem("data-bs-theme") !== null) { themeMode = "light" } else { themeMode = defaultThemeMode; } } if (themeMode === "light") { themeMode = window.matchMedia("(prefers-color-scheme: light)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
+	<!--end::Theme mode setup on page load-->
+	<!--begin::App-->
+	<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+		<!--begin::Page-->
+		<div class="app-page flex-column flex-column-fluid" id="kt_app_page">
+			<!--begin::Header-->
+			<div id="kt_app_header" class="app-header d-flex flex-column flex-stack">
+				<!--begin::Header main-->
+				<div class="d-flex align-items-center flex-stack flex-grow-1">
+					<div class="app-header-logo d-flex align-items-center flex-stack px-lg-11 mb-2"
+						 id="kt_app_header_logo">
+						<!--begin::Sidebar mobile toggle-->
+						<div class="btn btn-icon btn-active-color-primary w-35px h-35px ms-3 me-2 d-flex d-lg-none"
+							 id="kt_app_sidebar_mobile_toggle">
+							<i class="ki-duotone ki-abstract-14 fs-2">
+								<span class="path1"></span>
+								<span class="path2"></span>
+							</i>
+						</div>
+						<!--end::Sidebar mobile toggle-->
+						<!--begin::Logo-->
+						<a href="../dist/index.html" class="app-sidebar-logo">
+							<img alt="Logo" src="assets/media/logos/default.svg" class="h-30px theme-light-show" />
+							<img alt="Logo" src="assets/media/logos/default-dark.svg" class="h-30px theme-dark-show" />
+						</a>
+						<!--end::Logo-->
+						<!--begin::Sidebar toggle-->
+						<div id="kt_app_sidebar_toggle"
+							 class="app-sidebar-toggle btn btn-sm btn-icon btn-color-warning me-n2 d-none d-lg-flex"
+							 data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
+							 data-kt-toggle-name="app-sidebar-minimize">
+							<i class="ki-duotone ki-exit-left fs-2x rotate-180">
+								<span class="path1"></span>
+								<span class="path2"></span>
+							</i>
+						</div>
+						<!--end::Sidebar toggle-->
+					</div>
+					<!--begin::Navbar-->
+					<div class="app-navbar flex-grow-1 justify-content-end" id="kt_app_header_navbar">
+						<div class="app-navbar-item d-flex align-items-stretch flex-lg-grow-1 me-2 me-lg-0">
+							<!--begin::Search-->
+							<div id="kt_header_search" class="header-search d-flex align-items-center w-lg-350px">
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - WALASEBAI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+								<!--begin::Form(use d-none d-lg-block classes for responsive search)-->
+								<form data-kt-search-element="form"
+									  class="d-none d-lg-block w-100 position-relative mb-5 mb-lg-0" autocomplete="off">
+									<!--begin::Hidden input(Added to disable form autocomplete)-->
+									<input type="hidden" />
+									<!--end::Hidden input-->
+									<!--begin::Icon-->
+									<i class="ki-duotone ki-magnifier search-icon fs-2 text-gray-500 position-absolute top-50 translate-middle-y ms-5">
+										<span class="path1"></span>
+										<span class="path2"></span>
+									</i>
+									<!--end::Icon-->
+									<!--begin::Input-->
+									<input type="text"
+										   class="search-input form-control form-control border-0 h-lg-40px ps-13"
+										   name="search" value="" placeholder="Search..." data-kt-search-element="input" />
+									<!--end::Input-->
+								</form>
+								<!--end::Form-->
+							</div>
+							<!--end::Search-->
+						</div>
+					</div>
+					<!--end::Navbar-->
+				</div>
+				<!--end::Header main-->
+				<!--begin::Separator-->
+				<div class="app-header-separator"></div>
+				<!--end::Separator-->
+			</div>
+			<!--end::Header-->
+			<!--begin::Wrapper-->
+			<div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+				<!--begin::Sidebar-->
+				<div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true"
+					 data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}"
+					 data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="start"
+					 data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
+					<!--begin::Main-->
+					<div class="d-flex flex-column justify-content-between h-100 hover-scroll-overlay-y my-2 d-flex flex-column"
+						 id="kt_app_sidebar_main" data-kt-scroll="true" data-kt-scroll-activate="true"
+						 data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_header"
+						 data-kt-scroll-wrappers="#kt_app_main" data-kt-scroll-offset="5px">
+						<!--begin::Sidebar menu-->
+						<div id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false"
+							 class="flex-column-fluid menu menu-column menu-rounded menu-active-bg mb-7">
+							<!--begin:Menu item-->
+							<div class="menu-item">
+								<!--begin:Menu link-->
+								<span class="menu-link">
+									<a class="nav-link menu-link" asp-area="" asp-controller="Home" asp-action="Index">
+										<span class="menu-icon">
+											<i class="ki-duotone ki-element-11 fs-1">
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+												<span class="path4"></span>
+											</i>
+										</span>
+										<span class="menu-title">Home</span>
+									</a>
+								</span>
+							</div>
+							<div class="menu-item">
+								<span class="menu-link">
+									<a class="nav-link menu-link" asp-area="" asp-controller="Students" asp-action="Index">
+										<span class="menu-icon">
+											<i class="ki-duotone ki-element-11 fs-1">
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+												<span class="path4"></span>
+											</i>
+										</span>
+										<span class="menu-title">Students</span>
+									</a>
+								</span>
+							</div>
+							<div class="menu-item">
+								<span class="menu-link">
+									<a class="nav-link text-dark menu-link" asp-area="" asp-controller="Enseignants" asp-action="Index">
+										<span class="menu-icon">
+											<i class="ki-duotone ki-element-11 fs-1">
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+												<span class="path4"></span>
+											</i>
+										</span>
+										<span class="menu-title">Enseignants</span>
+									</a>
+								</span>
+							</div>
+							<div class="menu-item">
+								<span class="menu-link">
+									<a class="nav-link text-dark menu-link" asp-area="" asp-controller="Societes" asp-action="Index">
+										<span class="menu-icon">
+											<i class="ki-duotone ki-element-11 fs-1">
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+												<span class="path4"></span>
+											</i>
+										</span>
+										<span class="menu-title">Societes</span>
+									</a>
+								</span>
+							</div>
+							<div class="menu-item">
+								<span class="menu-link">
+									<a class="nav-link text-dark menu-link" asp-area="" asp-controller="PFEs" asp-action="Index">
+										<span class="menu-icon">
+											<i class="ki-duotone ki-element-11 fs-1">
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+												<span class="path4"></span>
+											</i>
+										</span>
+										<span class="menu-title">PFE</span>
+									</a>
+								</span>
+							</div>
+							<div class="menu-item">
+								<span class="menu-link">
+									<a class="nav-link text-dark menu-link" asp-area="" asp-controller="PFE_Etudiant" asp-action="Index">
+										<span class="menu-icon">
+											<i class="ki-duotone ki-element-11 fs-1">
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+												<span class="path4"></span>
+											</i>
+										</span>
+										<span class="menu-title">List</span>
+									</a>
+								</span>
+							</div>
+							<div class="menu-item">
+								<span class="menu-link">
+									<a class="nav-link text-dark menu-link" asp-area="" asp-controller="Soutenances" asp-action="Index">
+										<span class="menu-icon">
+											<i class="ki-duotone ki-element-11 fs-1">
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+												<span class="path4"></span>
+											</i>
+										</span>
+										<span class="menu-title">Soutenances</span>
+									</a>
+								</span>
+							</div>
+						</div>
+						<!--end::Sidebar menu-->
+					</div>
+					<!--end::Main-->
+				</div>
+				<!--end::Sidebar-->
+				<!--begin::Main-->
+				<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+					<!--begin::Content wrapper-->
+					<div class="d-flex flex-column flex-column-fluid">
+						<!--begin::Content-->
+						<div id="kt_app_content" class="app-content flex-column-fluid">
+							<!--begin::Content container-->
+							<div id="kt_app_content_container" class="app-container container-fluid">
+            @RenderBody()
+							</div>
+							<!--end::Content container-->
+						</div>
+	
+					</div>
+
+					<div id="kt_app_footer"
+						 class="app-footer align-items-center justify-content-center justify-content-md-between flex-column flex-md-row py-3">
+				
+						<div class="text-dark order-2 order-md-1">
+							<span class="text-muted fw-semibold me-1">2023&copy;</span>
+							<span class="text-gray-800 text-hover-primary">Walaa Sebai</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+		<i class="ki-duotone ki-arrow-up">
+			<span class="path1"></span>
+			<span class="path2"></span>
+		</i>
+	</div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+	<script>var hostUrl = "assets/";</script>
+	<script src="assets/plugins/global/plugins.bundle.js"></script>
+	<script src="assets/js/scripts.bundle.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

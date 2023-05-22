@@ -4,58 +4,93 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+    <div class="page-title d-flex flex-column gap-1 me-3 mb-2">
+        <ul class="breadcrumb breadcrumb-separatorless fw-semibold mb-6">
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+                <a href="../dist/index.html" class="text-gray-500">
+                    <i class="ki-duotone ki-home fs-3 text-gray-400 me-n1"></i>
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+            </li>
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Apps</li>
+            <li class="breadcrumb-item">
+                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+            </li>
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Students</li>
+            <li class="breadcrumb-item">
+                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+            </li>
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Details</li>
+        </ul>
+        <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bolder fs-1 lh-0">Students</h1>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-info">Edit</a>
+        <a asp-action="Index" class="btn btn-danger ms-3 px-4 py-3">Back to list</a>
+    </div>
 
-<div>
-    <h4>Student</h4>
+</div>
+
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nom)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nom)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Prenom)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Prenom)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateNaiss)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateNaiss)
-        </dd>
-    </dl>
+    <br />
+
+<div class="card mb-5 mb-xl-10">
+    <div class="card-body p-9">
+        <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Nom)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Nom)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Prenom)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Prenom)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.DateNaiss)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.DateNaiss)
+            </dd>
+        </dl>
+    </div>
 </div>
 
 @if (Model.PFEEtudiants != null && Model.PFEEtudiants.Any())
 {
-    <div>
-        <h4>PFE Etudiants</h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>PFE ID</th>
-                    <th>PFE Titre</th>
+<div class="app-content flex-column-fluid">
+    <div class="card card-flush">
+        <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+            <h4>PFE Etudiants</h4>
+        </div>
+        <div class="card-body pt-0">
+            <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                <thead>
+                    <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Description</th>
                 </tr>
             </thead>
-            <tbody>
+                <tbody class="fw-semibold text-gray-600">
                 @foreach (var pfeEtudiant in Model.PFEEtudiants)
                 {
                     <tr>
                         <td>@pfeEtudiant.PFEID</td>
                         <td>@pfeEtudiant.PFE?.Titre</td>
+                        <td>@pfeEtudiant.PFE?.Desc</td>
                     </tr>
                 }
             </tbody>
-        </table>
-    </div>
-}
+            </table>
 
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
 </div>
+}
